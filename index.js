@@ -3,7 +3,8 @@ const geocoder = require('node-geocoder')();
 
 const { OAUTH_TOKEN, VERSION } = process.env;
 
-module.exports = async () => {
+module.exports = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   try {
     const response = await fetch(
       `https://api.foursquare.com/v2/users/self?oauth_token=${OAUTH_TOKEN}&v=${VERSION}`
