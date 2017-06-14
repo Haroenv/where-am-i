@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "where-am-i",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "micro",
+    "test": "eslint ."
+  },
+  "dependencies": {
+    "got": "^7.0.0",
+    "micro": "^7.3.3",
+    "node-fetch": "^1.7.1",
+    "node-geocoder": "^3.16.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-algolia": "^10.1.0"
+  }
+}
