@@ -4,7 +4,7 @@ Simple (now) microservice that will return the city and country of the last chec
 
 Since this is pretty rough, you will just have to hardcode two ENV VARIABLES
 
-These come from from <https://developer.foursquare.com/docs/explore#req=users/self>:
+These come from from <https://foursquare.com/developers/explore#req=users%2Fself>:
 
 ```
 https://api.foursquare.com/v2/users/self?oauth_token=XXXXXXX&v=NNNNN
