@@ -1,22 +1,32 @@
-const fetch = require('node-fetch');
-const geocoder = require('node-geocoder')();
-
-const { OAUTH_TOKEN, VERSION } = process.env;
+const { send } = require('micro');
+const got = require('got');
+const { GOOGLE_API_KEY, FOURSQUARE_API_KEY, FOURSQUARE_VERSION } = process.env;
+const geocoder = require('node-geocoder')({
+  apiKey: GOOGLE_API_KEY,
+});
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   try {
-    const response = await fetch(
-      `https://api.foursquare.com/v2/users/self?oauth_token=${OAUTH_TOKEN}&v=${VERSION}`
-    );
-    const fsq = await response.json();
     const {
-      lat,
-      lng: lon,
-    } = fsq.response.user.checkins.items[0].venue.location;
-    const [{ city, country }] = await geocoder.reverse({ lat, lon });
+      body: { response },
+    } = await got(
+      `https://api.foursquare.com/v2/users/self?oauth_token=${FOURSQUARE_API_KEY}&v=${FOURSQUARE_VERSION}`,
+      { json: true }
+    );
+
+    const lastCheckin = response.user.checkins.items[0].venue.location;
+
+    let { city, country } = lastCheckin;
+
+    if (city === undefined || country === undefined) {
+      const { lat, lng: lon } = lastCheckin;
+      [{ city, country }] = await geocoder.reverse({ lat, lon });
+    }
+
     return { city, country };
-  } catch (e) {
-    return e;
+  } catch (err) {
+    console.error(err);
+    send(res, 500, { message: err.message });
   }
 };
