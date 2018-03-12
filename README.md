@@ -7,17 +7,19 @@ Since this is pretty rough, you will just have to hardcode two ENV VARIABLES
 These come from from <https://foursquare.com/developers/explore#req=users%2Fself>:
 
 ```
-https://api.foursquare.com/v2/users/self?oauth_token=XXXXXXX&v=NNNNN
+https://api.foursquare.com/v2/users/self?oauth_token=xxx&v=nnn
 ```
+
+A Google maps api key can be found at <https://console.developers.google.com/apis/credentials?project=_>
 
 Then you can use this as
 
 ```sh
-OAUTH_TOKEN=XXXXXXX VERSION=NNNNN yarn start
+GOOGLE_API_KEY=yyy FOURSQUARE_API_KEY=xxx VERSION=nnn yarn dev
 ```
 
 It can be deployed to now like this:
 
 ```sh
-now -e OAUTH_TOKEN=XXXXXXX -e VERSION=NNNNN
+now -e GOOGLE_API_KEY=yyy -e FOURSQUARE_API_KEY=xxx -e VERSION=nnn
 ```
