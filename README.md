@@ -15,11 +15,11 @@ A Google maps api key can be found at <https://console.developers.google.com/api
 Then you can use this as
 
 ```sh
-GOOGLE_API_KEY=yyy FOURSQUARE_API_KEY=xxx VERSION=nnn yarn dev
+GOOGLE_API_KEY=yyy FOURSQUARE_API_KEY=xxx FOURSQUARE_VERSION=nnn yarn dev
 ```
 
 It can be deployed to now like this:
 
 ```sh
-now -e GOOGLE_API_KEY=yyy -e FOURSQUARE_API_KEY=xxx -e VERSION=nnn
+now -e GOOGLE_API_KEY=yyy -e FOURSQUARE_API_KEY=xxx -e FOURSQUARE_VERSION=nnn
 ```
